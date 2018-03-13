@@ -7,14 +7,14 @@ export class UploadButton extends React.Component {
         console.log(selectorFiles);
         if (selectorFiles) {
             Tesseract.recognize(selectorFiles[0])
-                .then(function(result: any) {
+                .then((result: any) => {
                     console.log(result);
                 });
 
         }
     }
-    
-    render () {
+
+    render() {
         return (
             <input type="file" onChange={e => this.handleChange(e.target.files)} />
         );
