@@ -28,8 +28,6 @@ export const cardsActions = {
     add: createAction(TypeKeys.ADD, (card: Card) => ({type: TypeKeys.ADD, card})),
 };
 
-// export const addCard = (card: Card) => ({type: TypeKeys.ADD, card});
-
 export default function cardsReducer(state: State = initialState, action: ActionsTypes) {
     switch (action.type) {
         case TypeKeys.ADD: {

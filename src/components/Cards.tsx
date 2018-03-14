@@ -6,7 +6,7 @@ import {cardsActions} from 'ducks/cards';
 
 interface CardsProps {
     cards: Card[];
-    onAdd: () => any;
+    onAdd: (card: Card) => any;
 }
 
 export const Cards: React.SFC<CardsProps> = props => {
