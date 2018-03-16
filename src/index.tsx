@@ -4,7 +4,6 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
-// import {createStore} from 'redux';
 import rootReducer from '../src/ducks';
 import {createEpicMiddleware} from 'redux-observable';
 import {rootEpic} from 'epics';

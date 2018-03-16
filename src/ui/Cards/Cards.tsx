@@ -5,14 +5,15 @@ import {RootState} from '@app/ducks';
 import {cardsActions} from '@app/ducks/cards';
 import {CardsListing} from './CardsListing';
 import {Container} from '@app/components/Container';
+import {CardForm} from './CardForm';
 
-interface CardsProps {
+interface Props {
     cards: Card[];
     onAdd: (card: Card) => any;
     fetchCards: () => any;
 }
 
-class Cards extends React.Component<CardsProps> {
+class Cards extends React.Component<Props> {
 
     componentDidMount() {
         this.props.fetchCards();
@@ -22,6 +23,7 @@ class Cards extends React.Component<CardsProps> {
         return (
             <Container>
                 <CardsListing cards={this.props.cards} />
+                <CardForm onAdd={this.props.onAdd} />
             </Container>
         );
     }

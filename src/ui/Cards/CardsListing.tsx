@@ -13,6 +13,7 @@ const ListingContainer = styled.div`
     > * {
         margin-top: 10px;
     }
+    margin: 20px;
 `;
 
 export const CardsListing: React.SFC<Props> = props => {

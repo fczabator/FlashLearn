@@ -13,7 +13,6 @@ const initialState: State = {
 // Actions
 export enum TypeKeys {
     ADD = 'cards/ADD',
-    REMOVE = 'cards/REMOVE',
     FETCH_REQUEST = 'cards/FETCH_REQUEST',
     FETCH_FULFILLED = 'cards/FETCH_FULFILLED',
 }
