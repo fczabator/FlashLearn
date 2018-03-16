@@ -3,14 +3,16 @@ import * as ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
+// import {createStore} from 'redux';
 import rootReducer from '../src/ducks';
 import {createEpicMiddleware} from 'redux-observable';
 import {rootEpic} from 'epics';
 
-const enhancer = window['devToolsExtension'] ? window['devToolsExtension']()(createStore) : createStore;
 const epicMiddleware = createEpicMiddleware(rootEpic);
-const store = enhancer(rootReducer, applyMiddleware(epicMiddleware));
+const middleware = applyMiddleware(epicMiddleware);
+const enhancer = compose(middleware, window['devToolsExtension'] ? window['devToolsExtension']() : (f: any) => f);
+const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>

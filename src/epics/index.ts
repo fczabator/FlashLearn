@@ -1,18 +1,18 @@
-import {Observable} from 'rxjs/Observable';
-import filter from 'rxjs/add/operator/filter';
-import switchMap from 'rxjs/add/operator/switchMap';
+import * as Rx from 'rxjs/Rx';
 import {combineEpics, Epic} from 'redux-observable';
 import {RootAction} from 'ducks/rootAction';
 import {RootState} from 'ducks';
-import {cardsActions} from 'ducks/cards';
-import {addCard as addCardApi} from 'api';
-import {isActionOf} from 'typesafe-actions';
+import {TypeKeys, cardsActions} from '@app/ducks/cards';
+import {Card} from '@app/types';
 
-const addCard: Epic<RootAction, RootState> =
-    (action$, store) => action$
-        .filter(isActionOf(cardsActions.add))
-        .switchMap(card => {
-            addCardApi(card);
+export const fetchCardsEpic: Epic<RootAction, RootState> = (action$) => {
+    return action$.ofType(TypeKeys.FETCH_REQUEST)
+        .switchMap(() => {
+            return Rx.Observable.ajax.getJSON('https://flashlearn-4ad95.firebaseio.com/cards.json')
+                .map((cards: Card[]) => {
+                    return cardsActions.fetchFulfilled(cards);
+                });
         });
+};
 
-export const rootEpic = combineEpics(addCard);
+export const rootEpic = combineEpics(fetchCardsEpic);

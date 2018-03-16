@@ -1,0 +1,14 @@
+{
+  "cards" : [
+    {
+        "id": "-L7fsvUjyE0UK3mJ2K5v",
+        "translation" : "car",
+        "word" : "samochod"
+      },
+      {
+        "id" : "-L7fsvjaBN8r4tMcuJ8C",
+        "translation" : "house",
+        "word" : "dom"
+      }
+  ]
+}
