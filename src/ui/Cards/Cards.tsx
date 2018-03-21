@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card} from '@app/types';
+import {Card, IStringTMap} from '@app/types';
 import {connect} from 'react-redux';
 import {RootState} from '@app/ducks';
 import {cardsActions} from '@app/ducks/cards';
@@ -8,7 +8,7 @@ import {Container} from '@app/components/Container';
 import {CardForm} from './CardForm';
 
 interface Props {
-    cards: Card[];
+    cards: IStringTMap<Card>;
     onAdd: (card: Card) => any;
     fetchCards: () => any;
 }
@@ -16,6 +16,7 @@ interface Props {
 class Cards extends React.Component<Props> {
 
     componentDidMount() {
+        console.log('loll');
         this.props.fetchCards();
     }
 

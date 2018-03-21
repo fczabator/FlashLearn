@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Card} from '@app/types';
+import {Card, IStringTMap} from '@app/types';
 import {CardPaper} from './CardPaper';
 import styled from '@app/theme';
 
 interface Props {
-    cards: Card[];
+    cards: IStringTMap<Card>;
 }
 
 const ListingContainer = styled.div`
@@ -19,7 +19,7 @@ const ListingContainer = styled.div`
 export const CardsListing: React.SFC<Props> = props => {
     return (
         <ListingContainer>
-            {props.cards.map(card => (
+            {Object.values(props.cards).map(card => (
                 <CardPaper key={card.id} card={card} />
             ))}
         </ListingContainer>

@@ -1,18 +1,21 @@
-import {Card} from '../types';
+import {Card, IStringTMap} from '@app/types';
 import {createAction} from 'typesafe-actions';
 import {RootAction} from '@app/ducks/rootAction';
 
 export type State = {
-    readonly items: Card[];
+    readonly items: IStringTMap<Card>;
+    readonly pending: Card | null;
 };
 
 const initialState: State = {
-    items: [],
+    items: {},
+    pending: null,
 };
 
 // Actions
 export enum TypeKeys {
     ADD = 'cards/ADD',
+    ADDED = 'cards/ADDED',
     FETCH_REQUEST = 'cards/FETCH_REQUEST',
     FETCH_FULFILLED = 'cards/FETCH_FULFILLED',
 }
@@ -20,6 +23,7 @@ export enum TypeKeys {
 // Action creators
 export const cardsActions = {
     add: createAction(TypeKeys.ADD, (card: Card) => ({type: TypeKeys.ADD, card})),
+    added: createAction(TypeKeys.ADDED, (id: string) => ({type: TypeKeys.ADDED, id})),
     fetchRequest: createAction(TypeKeys.FETCH_REQUEST, () => ({type: TypeKeys.FETCH_REQUEST})),
     fetchFulfilled: createAction(
         TypeKeys.FETCH_FULFILLED,
@@ -30,7 +34,13 @@ export const cardsActions = {
 export default function cardsReducer(state: State = initialState, action: RootAction) {
     switch (action.type) {
         case TypeKeys.ADD: {
-            return {items: [...state.items, action.card]};
+            return {...state, pending: {...action.card, id: 'pending'}};
+        }
+        case TypeKeys.ADDED: {
+            const idFromResponse = action.id;
+            const item = {...state.pending, id: idFromResponse};
+            
+            return {...state, items: {...state.items, [idFromResponse]: item}, pending: null};
         }
         case TypeKeys.FETCH_FULFILLED: {
             return {items: action.cards};

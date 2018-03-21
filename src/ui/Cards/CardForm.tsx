@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Card} from '@app/types';
-import {generateRandomString} from '@app/helpers/randomString';
 
 interface Props {
     onAdd: (card: Card) => any;
@@ -27,7 +26,7 @@ export class CardForm extends React.Component<Props, State> {
     handleSubmit = (event: any) => {
         event.preventDefault();
 
-        this.props.onAdd({...this.state, id: generateRandomString()});
+        this.props.onAdd({...this.state, id: 'pending'});
         this.setState({word: '', translation: ''});
     }
 
