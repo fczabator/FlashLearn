@@ -1,13 +1,13 @@
 export type Card = {
-    id: string;
+    id?: string;
     word: string;
     translation: string;
 };
 
 export type Deck = {
-    id: string;
+    id?: string;
     name: string;
-    cards: Card[];
+    cardsIds?: [string];
 };
 
 export interface IStringTMap<T> {

@@ -20,11 +20,15 @@ export enum TypeKeys {
     FETCH_FULFILLED = 'cards/FETCH_FULFILLED',
 }
 
+type cardsQuery = {
+    deckId: string;
+};
+
 // Action creators
 export const cardsActions = {
     add: createAction(TypeKeys.ADD, (card: Card) => ({type: TypeKeys.ADD, card})),
     added: createAction(TypeKeys.ADDED, (id: string) => ({type: TypeKeys.ADDED, id})),
-    fetchRequest: createAction(TypeKeys.FETCH_REQUEST, () => ({type: TypeKeys.FETCH_REQUEST})),
+    fetchRequest: createAction(TypeKeys.FETCH_REQUEST, (query: cardsQuery) => ({query, type: TypeKeys.FETCH_REQUEST})),
     fetchFulfilled: createAction(
         TypeKeys.FETCH_FULFILLED,
         (cards: Card[]) => ({type: TypeKeys.FETCH_FULFILLED, cards})

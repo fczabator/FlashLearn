@@ -1,3 +1,4 @@
+// Currently using themes from material ui
 import * as styledComponents from 'styled-components';
 
 const {
@@ -11,11 +12,13 @@ const {
 >;
 
 export interface IThemeInterface {
-  primaryColor: string;
+    primaryColor: string;
 }
 
 export const theme = {
-  primaryColor: '#e9e9eb',
+  pallete: {
+    primaryColor: '#e9e9eb',
+  },
 };
 
 export default styled;

@@ -6,25 +6,30 @@ import {cardsActions} from '@app/ducks/cards';
 import {CardsListing} from './CardsListing';
 import {Container} from '@app/components/Container';
 import {CardForm} from './CardForm';
+import {RouteComponentProps} from 'react-router-dom';
+
+interface RouteInfo {
+    deckId: string;
+}
 
 interface Props {
     cards: IStringTMap<Card>;
     onAdd: (card: Card) => any;
     fetchCards: () => any;
+    match: RouteComponentProps<RouteInfo>;
 }
 
 class Cards extends React.Component<Props> {
 
     componentDidMount() {
-        console.log('loll');
         this.props.fetchCards();
     }
 
     render() {
         return (
             <Container>
-                <CardsListing cards={this.props.cards} />
                 <CardForm onAdd={this.props.onAdd} />
+                <CardsListing cards={this.props.cards} />
             </Container>
         );
     }
@@ -38,5 +43,6 @@ const mapStateToProps = (state: RootState) => {
 
 export default connect(mapStateToProps, {
     onAdd: cardsActions.add,
-    fetchCards: cardsActions.fetchRequest,
+    fetchCards: () => cardsActions.fetchRequest({deckId: '-L92AGysAOcOgz7bnRR8'})
+    ,
 })(Cards);

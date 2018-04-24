@@ -1,38 +1,33 @@
 import * as React from 'react';
 import {Card} from '@app/types';
 import styled from '@app/theme';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
 interface Props {
     card: Card;
 }
 
-const CardContainer = styled.div`
-    padding-top: 16px;
-    padding-left: 10px;
-    padding-bottom: 16px;
-    width: 400px;
-    border: 0.05em solid;
-`;
-
-const CardHeading = styled.div`
-    padding: 5px;
-    font-size: 30px;
-`;
-
-const CardText = styled.div`
-    padding: 5px;
-    font-size: 20px;
+const StyledPaper = styled(Paper)`
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 `;
 
 export const CardPaper: React.SFC<Props> = props => {
+    console.log(props);
     return (
-        <CardContainer>
-            <CardHeading>
+        <StyledPaper>
+            <Typography>
                 {props.card.word}
-            </CardHeading>
-            <CardText>
+            </Typography>
+            <Typography>
                 {props.card.translation}
-            </CardText>
-        </CardContainer>
+            </Typography>
+            
+        </StyledPaper>
     );
 };

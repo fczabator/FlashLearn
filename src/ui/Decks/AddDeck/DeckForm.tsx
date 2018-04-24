@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Deck} from '@app/types';
-import {TextField, Button} from 'material-ui';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 
 interface Props {
     onAdd: (deck: Deck) => any;
@@ -23,7 +24,10 @@ export class DeckForm extends React.Component<Props, State> {
     }
 
     handleSubmit = (event: any) => {
-        console.log(event.target.value);
+        event.preventDefault();
+
+        this.props.onAdd({...this.state});
+        this.setState({name: ''});
     }
 
     render() {
@@ -31,7 +35,7 @@ export class DeckForm extends React.Component<Props, State> {
             <form
                 onSubmit={this.handleSubmit}
             >
-                <TextField name="name" onChange={this.handleChange} />
+                <TextField name="name" onChange={this.handleChange} value={this.state.name} />
                 <Button type="submit">
                     Add
                 </Button>

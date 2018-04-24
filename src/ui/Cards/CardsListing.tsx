@@ -9,11 +9,12 @@ interface Props {
 
 const ListingContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    > * {
-        margin-top: 10px;
-    }
     margin: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    > * {
+        margin: 10px;
+    }
 `;
 
 export const CardsListing: React.SFC<Props> = props => {

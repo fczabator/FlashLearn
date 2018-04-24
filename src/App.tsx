@@ -2,8 +2,8 @@ import * as React from 'react';
 import Cards from '@app/ui/Cards/Cards';
 import {AppBar} from '@app/ui/Menu/AppBar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {AddDeck} from '@app/ui/Decks/AddDeck/AddDeck';
 import { Container } from 'components/Container';
+import Decks from '@app/ui/Decks/Decks';
 
 class App extends React.Component {
   render() {
@@ -12,8 +12,8 @@ class App extends React.Component {
         <AppBar />
         <Router>
           <Container>
-            <Route path="/cards" component={Cards} />
-            <Route path="/add-deck" component={AddDeck} />
+            <Route path="/decks" component={Decks} />
+            <Route path="/:deckId/cards" component={Cards} />
           </Container>
         </Router>
       </div>

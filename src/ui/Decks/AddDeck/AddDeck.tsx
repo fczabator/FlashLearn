@@ -8,7 +8,7 @@ interface Props {
     onAdd: (deck: Deck) => any;
 }
 
-export const AddDeck: React.SFC<Props> = (props) => {
+const AddDeck: React.SFC<Props> = (props) => {
     return (
         <div>
             <DeckForm onAdd={props.onAdd} />
@@ -18,4 +18,4 @@ export const AddDeck: React.SFC<Props> = (props) => {
 
 export default connect(null, {
     onAdd: decksActions.add,
-});
+})(AddDeck);
